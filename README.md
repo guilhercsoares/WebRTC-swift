@@ -4,11 +4,11 @@ forked from https://github.com/alexpiezo/WebRTC.
 
 ## Installation
 
-### Swift Package Manager 
+### Swift Package Manager
 
 Requires Swift 5.3 / Xcode 12+.
 
-Add WebRTC repository https://github.com/livekit/WebRTC.git via Swift Package Manager  
+Add WebRTC repository https://github.com/livekit/WebRTC.git via Swift Package Manager
 
 Alternatively, to integrate via a Package.swift manifest instead of Xcode, you can add WebRTC to your dependencies array of your package with
 
@@ -21,9 +21,9 @@ dependencies: [
 Then add a new run script phase script to your app’s target
 
 ```shellscript
-find "${CODESIGNING_FOLDER_PATH}" -name '*.framework' -print0 | while read -d $'\0' framework 
-do 
-    codesign --force --deep --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements --timestamp=none "${framework}" 
+find "${CODESIGNING_FOLDER_PATH}" -name '*.framework' -print0 | while read -d $'\0' framework
+do
+    codesign --force --deep --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements --timestamp=none "${framework}"
 done
 ```
 
@@ -48,23 +48,12 @@ gclient sync
 #### Generate iOS and macOS targets
 
 ```shellscript
-gn gen ../out/ios_arm64 --args='target_os="ios" target_cpu="arm64" is_component_build=false use_xcode_clang=true is_debug=false  ios_deployment_target="10.0" rtc_libvpx_build_vp9=false use_goma=false ios_enable_code_signing=false enable_stripping=true rtc_enable_protobuf=false enable_ios_bitcode=false treat_warnings_as_errors=false'
+# Build libs for desired arch
+./tools_webrtc/ios/build_ios_libs.py  --arch arm64 x64
 
-gn gen ../out/ios_x64 --args='target_os="ios" target_cpu="x64" is_component_build=false use_xcode_clang=true is_debug=true ios_deployment_target="10.0" rtc_libvpx_build_vp9=false use_goma=false ios_enable_code_signing=false enable_stripping=true rtc_enable_protobuf=false enable_ios_bitcode=false treat_warnings_as_errors=false'
-```
-
-#### Build the targets
-
-```shellscript
-ninja -C out/ios_arm64 sdk:framework_objc
-ninja -C out/ios_x64 sdk:framework_objc
-```
-
-#### Generate XCFramework
-
-```shellscript
+# Generate XCFramework
 xcodebuild -create-xcframework \
-	-framework out/ios_arm64/WebRTC.framework \
-	-framework out/ios_x64/WebRTC.framework \
-	-output out/WebRTC.xcframework
+	-framework out_ios_libs/arm64_libs/WebRTC.framework \
+	-framework out_ios_libs/x64_libs/WebRTC.framework \
+	-output out_ios_libs/WebRTC.xcframework
 ```
