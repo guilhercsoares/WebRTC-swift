@@ -1,0 +1,4 @@
+/*.xcodeproj
+xcuserdata/
+.swiftpm
+*.xcframework.zip
