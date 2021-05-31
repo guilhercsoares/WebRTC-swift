@@ -2,6 +2,14 @@
 
 forked from https://github.com/alexpiezo/WebRTC.
 
+## Versions
+
+This repo adopts the following version scheme. 
+
+`1.<release>.0` - where release is a WebRTC release. For example, M91 will be tagged as `1.91.0`
+
+We also publish a separate major version with LiveKit specific patches: `2.<release>.0`. Details of the changes in this branch can be found [here](https://github.com/livekit/webrtc-ios)
+
 ## Installation
 
 ### Swift Package Manager
@@ -14,7 +22,7 @@ Alternatively, to integrate via a Package.swift manifest instead of Xcode, you c
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/livekit/WebRTC-swift.git", .upToNextMajor(from: "1.1.33620"))
+    .package(url: "https://github.com/livekit/WebRTC-swift.git", .upToNextMajor(from: "1.91.0"))
 ]
 ```
 
