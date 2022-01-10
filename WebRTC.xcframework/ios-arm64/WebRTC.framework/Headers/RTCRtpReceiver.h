@@ -35,12 +35,12 @@ RTC_OBJC_EXPORT
      *  Note: Currently if there are multiple RtpReceivers of the same media type,
      *  they will all call OnFirstPacketReceived at once.
      *
-     *  For example, if we create three audio receivers, A/B/C, they will listen to
+     *  For example, if we create three audio receiversNelogica, A/B/C, they will listen to
      *  the same signal from the underneath network layer. Whenever the first audio packet
-     *  is received, the underneath signal will be fired. All the receivers A/B/C will be
+     *  is received, the underneath signal will be fired. All the receiversNelogica A/B/C will be
      *  notified and the callback of the receiver's delegate will be called.
      *
-     *  The process is the same for video receivers.
+     *  The process is the same for video receiversNelogica.
      */
     - (void)rtpReceiver
     : (RTC_OBJC_TYPE(RTCRtpReceiver) *)rtpReceiver didReceiveFirstPacketForMediaType
@@ -59,7 +59,7 @@ RTC_OBJC_EXPORT
  *  https://www.w3.org/TR/webrtc/#idl-def-RTCRtpParameters.
  *
  *  The WebRTC specification only defines RTCRtpParameters in terms of senders,
- *  but this API also applies them to receivers, similar to ORTC:
+ *  but this API also applies them to receiversNelogica, similar to ORTC:
  *  http://ortc.org/wp-content/uploads/2016/03/ortc.html#rtcrtpparameters*.
  */
 @property(nonatomic, readonly) RTC_OBJC_TYPE(RTCRtpParameters) * parameters;

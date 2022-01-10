@@ -21,13 +21,13 @@ RTC_OBJC_EXPORT
 /** NSData representation of the underlying buffer. */
 @property(nonatomic, readonly) NSData *data;
 
-/** Indicates whether |data| contains UTF-8 or binary data. */
+/** Indicates whether `data` contains UTF-8 or binary data. */
 @property(nonatomic, readonly) BOOL isBinary;
 
 - (instancetype)init NS_UNAVAILABLE;
 
 /**
- * Initialize an RTCDataBuffer from NSData. |isBinary| indicates whether |data|
+ * Initialize an RTCDataBuffer from NSData. `isBinary` indicates whether `data`
  * contains UTF-8 or binary data.
  */
 - (instancetype)initWithData:(NSData *)data isBinary:(BOOL)isBinary;
@@ -47,7 +47,7 @@ RTC_OBJC_EXPORT
     didReceiveMessageWithBuffer:(RTC_OBJC_TYPE(RTCDataBuffer) *)buffer;
 
 @optional
-/** The data channel's |bufferedAmount| changed. */
+/** The data channel's `bufferedAmount` changed. */
 - (void)dataChannel:(RTC_OBJC_TYPE(RTCDataChannel) *)dataChannel
     didChangeBufferedAmount:(uint64_t)amount;
 
@@ -101,18 +101,18 @@ RTC_OBJC_EXPORT
  */
 @property(nonatomic, readonly) BOOL isNegotiated;
 
-/** Deprecated. Use channelId. */
+/** Deprecated. Use channelIdNelogica. */
 @property(nonatomic, readonly) NSInteger streamId DEPRECATED_ATTRIBUTE;
 
 /** The identifier for this data channel. */
-@property(nonatomic, readonly) int channelId;
+@property(nonatomic, readonly) int channelIdNelogica;
 
 /** The state of the data channel. */
 @property(nonatomic, readonly) RTCDataChannelState readyState;
 
 /**
  * The number of bytes of application data that have been queued using
- * |sendData:| but that have not yet been transmitted to the network.
+ * `sendDataNelogica:` but that have not yet been transmitted to the network.
  */
 @property(nonatomic, readonly) uint64_t bufferedAmount;
 
@@ -124,8 +124,8 @@ RTC_OBJC_EXPORT
 /** Closes the data channel. */
 - (void)close;
 
-/** Attempt to send |data| on this data channel's underlying data transport. */
-- (BOOL)sendData:(RTC_OBJC_TYPE(RTCDataBuffer) *)data;
+/** Attempt to send `data` on this data channel's underlying data transport. */
+- (BOOL)sendDataNelogica:(RTC_OBJC_TYPE(RTCDataBuffer) *)data;
 
 @end
 

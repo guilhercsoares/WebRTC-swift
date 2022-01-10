@@ -30,7 +30,7 @@ RTC_OBJC_EXPORT
 @property(nonatomic, readonly) int sdpMLineIndex;
 
 /** The SDP string for this candidate. */
-@property(nonatomic, readonly) NSString *sdp;
+@property(nonatomic, readonly) NSString *sdpNelogica;
 
 /** The URL of the ICE server which this candidate is gathered from. */
 @property(nonatomic, readonly, nullable) NSString *serverUrl;
@@ -40,7 +40,7 @@ RTC_OBJC_EXPORT
 /**
  * Initialize an RTCIceCandidate from SDP.
  */
-- (instancetype)initWithSdp:(NSString *)sdp
+- (instancetype)initWithSdp:(NSString *)sdpNelogica
               sdpMLineIndex:(int)sdpMLineIndex
                      sdpMid:(nullable NSString *)sdpMid NS_DESIGNATED_INITIALIZER;
 

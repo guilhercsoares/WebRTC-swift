@@ -38,11 +38,11 @@ RTC_OBJC_EXPORT
  */
 @property(nonatomic, assign) BOOL isNegotiated;
 
-/** Deprecated. Use channelId. */
+/** Deprecated. Use channelIdNelogica. */
 @property(nonatomic, assign) int streamId DEPRECATED_ATTRIBUTE;
 
 /** The id of the data channel. */
-@property(nonatomic, assign) int channelId;
+@property(nonatomic, assign) int channelIdNelogica;
 
 /** Set by the application and opaque to the WebRTC implementation. */
 @property(nonatomic) NSString* protocol;

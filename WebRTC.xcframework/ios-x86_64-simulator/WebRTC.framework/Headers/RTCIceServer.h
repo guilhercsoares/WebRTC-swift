@@ -37,9 +37,9 @@ RTC_OBJC_EXPORT
 @property(nonatomic, readonly) RTCTlsCertPolicy tlsCertPolicy;
 
 /**
-  If the URIs in |urls| only contain IP addresses, this field can be used
+  If the URIs in `urls` only contain IP addresses, this field can be used
   to indicate the hostname, which may be necessary for TLS (using the SNI
-  extension). If |urls| itself contains the hostname, this isn't necessary.
+  extension). If `urls` itself contains the hostname, this isn't necessary.
  */
 @property(nonatomic, readonly, nullable) NSString *hostname;
 
@@ -55,13 +55,13 @@ RTC_OBJC_EXPORT
 - (nonnull instancetype)init NS_UNAVAILABLE;
 
 /** Convenience initializer for a server with no authentication (e.g. STUN). */
-- (instancetype)initWithURLStrings:(NSArray<NSString *> *)urlStrings;
+- (instancetype)initWithNeloURLStrings:(NSArray<NSString *> *)urlStrings;
 
 /**
  * Initialize an RTCIceServer with its associated URLs, optional username,
  * optional credential, and credentialType.
  */
-- (instancetype)initWithURLStrings:(NSArray<NSString *> *)urlStrings
+- (instancetype)initWithNeloURLStrings:(NSArray<NSString *> *)urlStrings
                           username:(nullable NSString *)username
                         credential:(nullable NSString *)credential;
 
@@ -69,7 +69,7 @@ RTC_OBJC_EXPORT
  * Initialize an RTCIceServer with its associated URLs, optional username,
  * optional credential, and TLS cert policy.
  */
-- (instancetype)initWithURLStrings:(NSArray<NSString *> *)urlStrings
+- (instancetype)initWithNeloURLStrings:(NSArray<NSString *> *)urlStrings
                           username:(nullable NSString *)username
                         credential:(nullable NSString *)credential
                      tlsCertPolicy:(RTCTlsCertPolicy)tlsCertPolicy;
@@ -78,7 +78,7 @@ RTC_OBJC_EXPORT
  * Initialize an RTCIceServer with its associated URLs, optional username,
  * optional credential, TLS cert policy and hostname.
  */
-- (instancetype)initWithURLStrings:(NSArray<NSString *> *)urlStrings
+- (instancetype)initWithNeloURLStrings:(NSArray<NSString *> *)urlStrings
                           username:(nullable NSString *)username
                         credential:(nullable NSString *)credential
                      tlsCertPolicy:(RTCTlsCertPolicy)tlsCertPolicy
@@ -88,7 +88,7 @@ RTC_OBJC_EXPORT
  * Initialize an RTCIceServer with its associated URLs, optional username,
  * optional credential, TLS cert policy, hostname and ALPN protocols.
  */
-- (instancetype)initWithURLStrings:(NSArray<NSString *> *)urlStrings
+- (instancetype)initWithNeloURLStrings:(NSArray<NSString *> *)urlStrings
                           username:(nullable NSString *)username
                         credential:(nullable NSString *)credential
                      tlsCertPolicy:(RTCTlsCertPolicy)tlsCertPolicy
@@ -100,14 +100,21 @@ RTC_OBJC_EXPORT
  * optional credential, TLS cert policy, hostname, ALPN protocols and
  * elliptic curves.
  */
-- (instancetype)initWithURLStrings:(NSArray<NSString *> *)urlStrings
+- (instancetype)initWithNeloURLStrings:(NSArray<NSString *> *)urlStrings
                           username:(nullable NSString *)username
                         credential:(nullable NSString *)credential
                      tlsCertPolicy:(RTCTlsCertPolicy)tlsCertPolicy
                           hostname:(nullable NSString *)hostname
                   tlsAlpnProtocols:(nullable NSArray<NSString *> *)tlsAlpnProtocols
                  tlsEllipticCurves:(nullable NSArray<NSString *> *)tlsEllipticCurves
-    NS_DESIGNATED_INITIALIZER;
+#ifndef NS_DESIGNATED_INITIALIZER
+#if __has_attribute(objc_designated_initializer)
+#define NS_DESIGNATED_INITIALIZER __attribute__((objc_designated_initializer))
+#else
+#define NS_DESIGNATED_INITIALIZER
+#endif
+#endif
+;
 
 @end
 
